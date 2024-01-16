@@ -110,12 +110,7 @@ export const Assesment = () => {
                             {!backFlag ? <button onClick={handleGoBack}>Prev</button> : <button style={{backgroundColor:'grey', color:"white"}} onClick={handlEndClick}>Prev</button>}
                             {!nextFlag ? <button onClick={handleGoNext}>Next</button> : <button style={{backgroundColor:'grey', color:"white"}} onClick={handlEndClick}>Next</button>}
                         </div>
-                    </div>
-                </>
-            ):null
-        }
-    </div>
-            {
+                        {
                 usersInCard.length>0?(
                     <div className="user-card-pagination">
                         <div className="horizontal-bar">
@@ -135,6 +130,11 @@ export const Assesment = () => {
                     </div>
                 ):null
             }
+                    </div>
+                </>
+            ):null
+        }
+    </div>
     </>
   )
 }
