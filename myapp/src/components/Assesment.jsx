@@ -7,10 +7,15 @@ export const Assesment = () => {
     let index = useRef(-1)
     const [backFlag, setBackFlag] = useState(true);
     const [nextFlag, setNextFlag] = useState(true);
+    const [searchedUser, setSearchedUser] = useState([]);
+    
 
     useEffect(()=>{
         try {
-            fetch(BASE_URL).then((res)=>res.json().then((res)=>setUsers(res)))
+            fetch(BASE_URL).then((res)=>res.json().then((res)=>{
+                setUsers(res)
+                setSearchedUser(res);
+            }))
         } catch (error) {
             console.log(error);
         }
@@ -47,17 +52,41 @@ export const Assesment = () => {
         alert("No more users to display :/");
     }
 
-    // const mockApi = (obj, time) =>{
-    //     return new Promise((resolve, reject)=>{
-    //         setTimeout(()=>{
-    //             resolve(obj);
-    //         },time)
-    //     })
-    // }
+    const searchUser = (val) =>{
+        if(val.length===0){
+            setSearchedUser(users);
+        }
+        setSearchedUser(()=>{
+            const updatedUser = users.filter((user)=>{
+                return user.name.includes(val) || user.email.includes(val);
+            })
+            return updatedUser
+        })
+    }
+    
+    const myDebounce = (func) =>{
+        let timer;
+        return function(...args)
+        {
+            if(timer)clearTimeout(timer);
+            const context = this;
+            timer = setTimeout(()=>{
+                timer=null;
+                func.apply(context, args);
+            },3000)
+        }
+    }
+
+    const debouncedSearchUser = myDebounce(searchUser);
 
     
   return (
     <>
+    <div className="search-user">
+        <div className="search-bar">
+            <input type="text" placeholder='search user' onChange={(e)=>debouncedSearchUser(e.target.value)} />
+        </div>
+    </div>
     <div className='user-body'>
         <div className="user-display">
             <div className="header">
@@ -68,10 +97,11 @@ export const Assesment = () => {
                     <tr style={{ background: "#f2f2f2" }}>
                         <th style={{ padding: "8px", border: "1px solid #ddd" }}>ID</th>
                         <th style={{ padding: "8px", border: "1px solid #ddd" }}>Name</th>
+                        <th style={{ padding: "8px", border: "1px solid #ddd" }}>Email</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {users?.map((user, ind) => (
+                    {searchedUser?.map((user, ind) => (
                         <tr
                             key={ind}
                             onClick={(e) => {
@@ -88,6 +118,7 @@ export const Assesment = () => {
                         >
                             <td style={{ padding: "8px", border: "1px solid #ddd" }}>{user.id}</td>
                             <td style={{ padding: "8px", border: "1px solid #ddd" }}>{user.name}</td>
+                            <td style={{ padding: "8px", border: "1px solid #ddd" }}>{user.email}</td>
                         </tr>
                     ))}
                 </tbody>

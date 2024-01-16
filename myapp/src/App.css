@@ -93,6 +93,27 @@ button:disabled {
     text-align: center;
 }
 
+.search-user{
+    margin: 1.5rem;
+    height: 100%;
+    display: flex;
+    gap: 3rem;
+    justify-content: left;
+}
+
+.search-user .search-bar input{
+    height: 27px;
+    padding: 1rem;
+    font-size: 1.5rem;
+    border-radius: 5px;
+}
+
+.search-user .set-parameter #dropdown{
+    height: 50px;
+    margin-top: 10px;
+    width: 7rem;
+    padding: 1rem;
+}
 @media all and (max-width:600px){
     .user-body{
         display: block;
@@ -117,6 +138,28 @@ button:disabled {
         width: 1.5rem;
         padding: 1rem;
         text-align: center;
+    }
+
+    .search-user{
+        margin: 1.5rem;
+        height: 100%;
+        display: flex;
+        gap: 3rem;
+        justify-content: center;
+    }
+    
+    .search-user .search-bar input{
+        height: 15px;
+        padding: 1rem;
+        font-size: 1rem;
+        border-radius: 5px;
+    }
+    
+    .search-user .set-parameter #dropdown{
+        height: 50px;
+        margin-top: 10px;
+        width: 7rem;
+        padding: 1rem;
     }
 }
 
@@ -144,5 +187,20 @@ button:disabled {
         width: 1.5rem;
         padding: 1rem;
         text-align: center;
+    }
+
+    .search-user{
+        margin: 1.5rem;
+        height: 100%;
+        display: flex;
+        gap: 3rem;
+        justify-content: center;
+    }
+    
+    .search-user .search-bar input{
+        height: 15px;
+        padding: 1rem;
+        font-size: 1rem;
+        border-radius: 5px;
     }
 }
