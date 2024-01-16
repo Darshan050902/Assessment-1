@@ -66,3 +66,21 @@ button:disabled {
     cursor: not-allowed;
 }
 
+.user-card-pagination{
+    height: 30%;
+    width: 100%;
+    margin: 3;
+}
+.horizontal-bar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-card-pagination .horizontal-bar .page{
+    border: 2px solid black;
+    height: 2rem;
+    width: 3rem;
+    padding: 1rem;
+    text-align: center;
+}
