@@ -53,12 +53,15 @@ export const Assesment = () => {
     }
 
     const searchUser = (val) =>{
+        console.log("search")
         if(val.length===0){
             setSearchedUser(users);
         }
         setSearchedUser(()=>{
             const updatedUser = users.filter((user)=>{
-                return user.name.includes(val) || user.email.includes(val);
+                const userName = user.name.toLowerCase();
+                const userEmail = user.email.toLowerCase();
+                return userName.includes(val) || userEmail.includes(val);
             })
             return updatedUser
         })
